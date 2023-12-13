@@ -2,7 +2,7 @@ import React from 'react'
 import style from './MainSection.module.css'
 import { Button } from '@mui/material'
 import { Link } from 'react-router-dom'
-export default function MainSection() {
+export default function MainSection({styles}) {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -14,7 +14,7 @@ export default function MainSection() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   return (
-    <div className={style.mainDiv}>
+    <div className={style.mainDiv} style={styles}>
       <h1 style={{textAlign:'center',fontWeight:'bold'}}>GET STARTED</h1>
       <div className={style.insideDiv}>
        <div className={style.parentDiv}>

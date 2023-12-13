@@ -3,8 +3,17 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    background-color: rgb(255, 255, 255);
-}
+    background-color:aliceblue;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Adjust as needed */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .navbar.scrolled {
+    /* background-color: aliceblue; */
+    box-shadow: 0 4px 6px rgba(167, 163, 163, 0.1);
+  }
 .hideButton{
     display: none;
 }
@@ -50,7 +59,7 @@
     
   }
   .linkDiv{
-    width: 60%;
+    width: 70%;
   }
   
 .links{
@@ -83,13 +92,55 @@
     background-color: aquamarine;
     display: none;
   }
-  @media only screen and (min-width:760px) and (max-width:890px) {
+  @media only screen and (min-width:890px) and (max-width:1100px) {
+.link{
+  font-size: 20px;
+}
+.linkDiv{
+  width: 80%;
+}
+.links > *{
+  margin-left: 15px;
+}
+.logo{
+  width: 120px;
+}
+  }
+  @media only screen and (min-width:810px) and (max-width:890px) {
     .linkDiv{
       width: 80%;
      justify-content: flex-end;
     }
+    .links > *{
+      margin-left: 15px;
+    }
     .logoDiv{
       width: 10%;
+    }
+    .logo{
+      width: 120px;
+    }
+    .link{
+      font-size: 18px;
+    }
+  }
+  
+  @media only screen and (min-width:760px) and (max-width:810px) {
+    .linkDiv{
+      width: 80%;
+     justify-content: flex-end;
+    }
+    .links > *{
+      margin-left: 15px;
+    }
+    .logoDiv{
+      width: 10%;
+    }
+    .logo{
+      width: 120px;
+    }
+    .link{
+      font-size: 14px;
     }
   }
   @media only screen and  (max-width:760px) {

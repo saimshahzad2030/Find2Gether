@@ -1,8 +1,8 @@
 import React from 'react'
 import style from './Footer.module.css'
-export default function Footer({children}) {
+export default function Footer({children,styles}) {
   return (
-    <div className={style.footer}>
+    <div className={style.footer} style = {styles}>
       {children}
     </div>
   )

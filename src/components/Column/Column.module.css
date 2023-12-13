@@ -25,4 +25,8 @@
     .column>h2{
 font-size: 30px;
     }
+    .column{
+        width: 100%;
+        max-width: 100%;
+    }
 }
