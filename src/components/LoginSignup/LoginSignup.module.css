@@ -37,3 +37,10 @@ width: 100%;
 .formDiv>*{
     margin-top: 20px;
 }
+.row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
+    width: 40%;
+}

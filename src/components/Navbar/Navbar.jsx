@@ -3,7 +3,7 @@ import style from './Navbar.module.css'
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import {FaBars} from 'react-icons/fa'
-export default function Navbar({reference,scrollToSection,scrollToTop}) {
+export default function Navbar({setType,reference,scrollToSection,scrollToTop}) {
   
   const [scrolled, setScrolled] = React.useState(false);
     // const scrollToSection = (id) => {
@@ -109,12 +109,12 @@ export default function Navbar({reference,scrollToSection,scrollToTop}) {
 
         </ul>
         <ul className={`${style.btn_ul}`}>
-    <Link to={'/login'}  onClick={()=>{ scrollToTop();scrollToSection(`login`)}}><Button variant="outlined"  sx={{ marginLeft:'10px',
+    <Link to={'/login'}  onClick={()=>{ scrollToTop();scrollToSection(`login`);setType('Login')}}><Button variant="outlined"  sx={{ marginLeft:'10px',
     fontWeight:'bold',
     color:'rgb(0, 51, 102)',
     border:'2px rgb(0, 51, 102) solid',
     width:'80px'}}>Login</Button></Link>
-    <Link  to={'/signin'}  onClick={()=>{ scrollToTop();scrollToSection(`signin`)}}><Button variant="outlined"sx={{ marginLeft:'10px',
+    <Link  to={'/signin'}  onClick={()=>{ scrollToTop();scrollToSection(`signin`);setType('Sign up')}}><Button variant="outlined"sx={{ marginLeft:'10px',
     fontWeight:'bold',
     color:'rgb(0, 51, 102)',
     border:'2px rgb(0, 51, 102) solid',

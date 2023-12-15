@@ -14,7 +14,10 @@ import { useState,useEffect, useRef } from "react";
 import OurApp from "./components/OurApp/OurApp";
 import About from "./components/About/About";
 import ContactUs from "./components/ContactUs/ContactUs";
+import LoginSignup from "./components/LoginSignup/LoginSignup";
+import Next from './components/SignUp/Next'
 function App() {
+  const [type,setType] = useState('login')
   const [scrollY, setScrollY] = useState(0);
   const [isEffectApplied, setIsEffectApplied] = useState(false);
   const [isRowEffectApplied, setIsRowEffectApplied] = useState(false);
@@ -98,13 +101,12 @@ const scrollToTop = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, [reference])
-console.log(scrollY)
   return (
 <BrowserRouter>
 <Routes>
   <Route path="/" element={
     <>
-   <Navbar scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
+   <Navbar setType={setType} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
    <Landing />
    <MainSection  styles={{ opacity: mainSectionOpacity }}/>
    <Row styles={{paddingTop:'50px',paddingBottom:'50px',opacity: rowSectionOpacity }} >
@@ -134,7 +136,7 @@ console.log(scrollY)
   }/>
    <Route path="/ourApp" element={
     <>
-    <Navbar scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
+    <Navbar setType={setType} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
    <OurApp/>
    <Row styles={{paddingTop:'50px',paddingBottom:'50px' }} >
               <Column>
@@ -164,7 +166,7 @@ console.log(scrollY)
 
 <Route path="/explore" element={
     <>
-    <Navbar scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
+    <Navbar setType={setType} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
    <MainSection/>
    <Row styles={{paddingTop:'50px',paddingBottom:'50px' }} >
               <Column>
@@ -194,7 +196,7 @@ console.log(scrollY)
   
 <Route path="/about" element={
     <>
-    <Navbar scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
+    <Navbar setType={setType} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
    <About/>
    <Row styles={{paddingTop:'50px',paddingBottom:'50px' }} >
               <Column>
@@ -224,8 +226,69 @@ console.log(scrollY)
   
 <Route path="/contactus" element={
     <>
-    <Navbar scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
+    <Navbar setType={setType} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
    <ContactUs/>
+   <Row styles={{paddingTop:'50px',paddingBottom:'50px' }} >
+              <Column>
+              <img src={process.env.PUBLIC_URL + '/Assets/logo/logo.png'} alt="logo"/>
+              <p style={{fontFamily:'cursive'}}>Solution to find missing ones and also a way to help others for finding their missing ones because together we can make this earth a better place..</p>
+              </Column>
+              <Column>
+              <h2 style={{fontWeight:'bold',marginBottom:'10px',color:'white'}}>Contacts</h2>
+              <p>+92 3142274221</p>
+              <p>saimshehzad2030@gmail.com</p>
+              </Column>
+              <Column>
+              <h2 style={{fontWeight:'bold',marginBottom:'10px',color:'white'}}>Links</h2>
+              <p><Link onClick={()=>{scrollToTop();scrollToSection(``);}} style={{textDecoration:'none',color:'aliceblue'}} to={'/'}>Home</Link></p>
+              <p><Link onClick={()=>{scrollToTop();scrollToSection(``);}} style={{textDecoration:'none',color:'aliceblue'}} to={'/ourApp'}>Our App</Link></p>
+              <p><Link onClick={()=>{scrollToTop();scrollToSection(``);}} style={{textDecoration:'none',color:'aliceblue'}} to={'/about'}>About us</Link></p>
+              </Column>
+              <Column>
+              <Input placeholder="Type any Query..." sx={{marginTop:'20px',color:'white'}}/>
+              <Button variant="outlined" sx={{margin:'20px',color:'white'}}>Send</Button>
+   
+              </Column>
+             </Row>
+             <Footer  ><h4 style={{color:'rgb(0, 51, 102)'}}>Copyright @ Saim Shahzad</h4></Footer>
+    </>
+  }/>
+
+
+<Route path="/signin" element={
+    <>
+    <Navbar setType={setType} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
+ <Next type={'Sign up'}/>
+   <Row styles={{paddingTop:'50px',paddingBottom:'50px' }} >
+              <Column>
+              <img src={process.env.PUBLIC_URL + '/Assets/logo/logo.png'} alt="logo"/>
+              <p style={{fontFamily:'cursive'}}>Solution to find missing ones and also a way to help others for finding their missing ones because together we can make this earth a better place..</p>
+              </Column>
+              <Column>
+              <h2 style={{fontWeight:'bold',marginBottom:'10px',color:'white'}}>Contacts</h2>
+              <p>+92 3142274221</p>
+              <p>saimshehzad2030@gmail.com</p>
+              </Column>
+              <Column>
+              <h2 style={{fontWeight:'bold',marginBottom:'10px',color:'white'}}>Links</h2>
+              <p><Link onClick={()=>{scrollToTop();scrollToSection(``);}} style={{textDecoration:'none',color:'aliceblue'}} to={'/'}>Home</Link></p>
+              <p><Link onClick={()=>{scrollToTop();scrollToSection(``);}} style={{textDecoration:'none',color:'aliceblue'}} to={'/ourApp'}>Our App</Link></p>
+              <p><Link onClick={()=>{scrollToTop();scrollToSection(``);}} style={{textDecoration:'none',color:'aliceblue'}} to={'/about'}>About us</Link></p>
+              </Column>
+              <Column>
+              <Input placeholder="Type any Query..." sx={{marginTop:'20px',color:'white'}}/>
+              <Button variant="outlined" sx={{margin:'20px',color:'white'}}>Send</Button>
+   
+              </Column>
+             </Row>
+             <Footer  ><h4 style={{color:'rgb(0, 51, 102)'}}>Copyright @ Saim Shahzad</h4></Footer>
+    </>
+  }/>
+  
+<Route path="/login" element={
+    <>
+    <Navbar setType={setType} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
+   <LoginSignup type={'Login'}/>
    <Row styles={{paddingTop:'50px',paddingBottom:'50px' }} >
               <Column>
               <img src={process.env.PUBLIC_URL + '/Assets/logo/logo.png'} alt="logo"/>

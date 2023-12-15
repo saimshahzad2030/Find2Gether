@@ -82,18 +82,25 @@
 //   )
 // }
 
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { TextField, Button } from '@mui/material';
+import React, { useState } from 'react';
+import { Formik, Form, Field} from 'formik';
+import { TextField, Button,Alert } from '@mui/material';
 import style from './ContactUs.module.css';
-
+import axios from 'axios';
 export default function ContactUs() {
+  const [isResponseSubmitted,setIsResponseSubmitted] = useState(false);
+  const [isResponseErrored,setIsResponseErrored] = useState(false);
   const validate = (values) => {
     const errors = {};
 
     // Validate email
     if (!values.email) {
       errors.email = 'Required';
+      setIsResponseErrored(true)
+          
+          setTimeout(() => {
+            setIsResponseErrored(false);
+          }, 3000);
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
       errors.email = 'Invalid email address';
     }
@@ -101,41 +108,96 @@ export default function ContactUs() {
     // Validate username
     if (values.username === 'admin') {
       errors.username = 'Nice try!';
+      setIsResponseErrored(true)
+          
+          setTimeout(() => {
+            setIsResponseErrored(false);
+          }, 3000);
     }
-
+    if (!values.username) {
+      errors.username = `Name Can't be blank!`;
+      setIsResponseErrored(true)
+          
+          setTimeout(() => {
+            setIsResponseErrored(false);
+          }, 3000);
+    }
+    if (!values.query){
+      errors.query = `Required!`;
+      setIsResponseErrored(true)
+          
+      setTimeout(() => {
+        setIsResponseErrored(false);
+      }, 3000);
+    }
     return errors;
   };
 
   return (
     <div className={style.mainDiv}>
       <h1>Contact us</h1>
+      {/* {isResponseErrored && (<Alert severity="success"  onClose={() => setIsResponseSubmitted(false)}>Message succesfully sent !</Alert>)} */}
+      
+      {isResponseSubmitted && (<Alert severity="success"  onClose={() => setIsResponseSubmitted(false)}>Message succesfully sent !</Alert>)}
       <Formik
         initialValues={{
           username: '',
           email: '',
           query: '',
         }}
-        onSubmit={(values) => {
-          // same shape as initial values
+        onSubmit={(values,{ resetForm }) => {
+          resetForm({
+            values: {
+              username: '',
+              email: '',
+              query: '',
+            },
+          });
+          setIsResponseSubmitted(true)
+          
+          setTimeout(() => {
+            setIsResponseSubmitted(false);
+          }, 3000);
+          const postData = {
+            email:values.email,
+            username:values.username,
+            query:values.query,
+           
+          };
+          
+          axios.post('http://localhost:3333/user/contact', postData, {
+            headers: {
+              'Content-Type': 'application/json',
+              // Add any other headers if needed
+            },
+          })
+            .then(response => {
+              console.log('Success:', response.data);
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
           console.log(values);
         }}
         validate={validate}
-      >
-        <Form>
+      >{({ errors, touched }) => (
+        <Form style={{width:'100%'}}>
           <div className={style.formDiv}>
           <Field
+           
             name="email"
             as={TextField}
             id="outlined-basic"
             label="Email"
             variant="outlined"
-            className={style.emailField}
             sx={{
               width: '60%',
               marginTop: '20px',
             }}
+            error={(errors.email && touched.email)}
+  helperText={errors.email && touched.email ? errors.email : ''}
           />
-          <ErrorMessage name="email" component="div" />
+         
 
           <Field
             name="username"
@@ -143,34 +205,45 @@ export default function ContactUs() {
             id="outlined-basic"
             label="Name"
             variant="outlined"
-            className={style.nameField}
             sx={{
               width: '60%',
               marginTop: '20px',
             }}
+            error={(errors.username && touched.username)}
+            helperText={errors.username && touched.username ? errors.username : ''}
           />
-          <ErrorMessage name="username" component="div" />
-
+          
           <Field
             name="query"
             as={TextField}
             id="outlined-multiline-static"
             label="Query"
-            className={style.queryField}
             multiline
             rows={4}
             sx={{
               width: '60%',
               marginTop: '20px',
             }}
+            error={(errors.query && touched.query)}
+            helperText={errors.query && touched.query ? errors.query : ''}
           />
-          <ErrorMessage name="query" component="div" />
-
-          <Button type="submit" variant="contained" className={style.btn}>
+         
+          <Button type="submit" variant="contained" 
+          
+          sx={{
+            marginTop: '20px',
+            marginBottom:' 40px',
+            marginLeft:'10px',
+            fontWeight:'bold',
+            color:'white',
+            border:'2px rgb(0, 51, 102) solid',
+            width:'80px',
+          }}
+          >
             Send
           </Button>
           </div>
-        </Form>
+        </Form>)}
       </Formik>
     </div>
   );
