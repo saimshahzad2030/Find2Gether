@@ -35,12 +35,9 @@ export default function OurApp() {
           </div>
           
           </div>
-          <Link  to={'/downloadApp'} ><Button variant="contained"sx={{ marginLeft:'10px', marginTop:'20px',
-    fontWeight:'bold',
-    color:'white',
-    border:'2px rgb(0, 51, 102) solid',
-    width:'100px'}}>Download</Button></Link>
-        </div>
+          <Button sx={{marginTop:'20px'}}>   <img className = {style.downloadApp} src={process.env.PUBLIC_URL + '/Assets/ourApp/app.png'} alt="download app" />
+      </Button>
+         </div>
       </div>
       
     </div>

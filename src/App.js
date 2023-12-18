@@ -21,7 +21,19 @@ function App() {
   const [scrollY, setScrollY] = useState(0);
   const [isEffectApplied, setIsEffectApplied] = useState(false);
   const [isRowEffectApplied, setIsRowEffectApplied] = useState(false);
+  const [forgotPass,setForgetPass] = useState(false)
   const reference = useRef(null)
+  const [firstname,setFirstname] = useState('asd ');
+  const [loggedIn,setLoggedIn] = useState(false);
+
+  //signup buttons
+  const [next,setNext]=useState(false)
+const [verify,setVerify]=useState(false)
+
+const [next2,setnext2] = useState(false)
+//
+
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -106,7 +118,7 @@ const scrollToTop = () => {
 <Routes>
   <Route path="/" element={
     <>
-   <Navbar setType={setType} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
+   <Navbar  setNext={setNext} setVerify={setVerify} setnext2={setnext2} setLoggedIn =  {setLoggedIn} setType={setType} firstname = {firstname} loggedIn = {loggedIn} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
    <Landing />
    <MainSection  styles={{ opacity: mainSectionOpacity }}/>
    <Row styles={{paddingTop:'50px',paddingBottom:'50px',opacity: rowSectionOpacity }} >
@@ -131,12 +143,12 @@ const scrollToTop = () => {
    
               </Column>
              </Row>
-             <Footer  styles={{ opacity: mainSectionOpacity }}><h4 style={{color:'rgb(0, 51, 102)'}}>Copyright @ Saim Shahzad</h4></Footer>
+             <Footer styles={{ opacity: mainSectionOpacity }}><h4 style={{color:'rgb(0, 51, 102)'}}>Copyright @ Saim Shahzad</h4></Footer>
     </>
   }/>
    <Route path="/ourApp" element={
     <>
-    <Navbar setType={setType} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
+    <Navbar  setNext={setNext} setVerify={setVerify} setnext2={setnext2} setLoggedIn =  {setLoggedIn} setType={setType} firstname = {firstname} loggedIn = {loggedIn} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
    <OurApp/>
    <Row styles={{paddingTop:'50px',paddingBottom:'50px' }} >
               <Column>
@@ -160,13 +172,13 @@ const scrollToTop = () => {
    
               </Column>
              </Row>
-             <Footer  ><h4 style={{color:'rgb(0, 51, 102)'}}>Copyright @ Saim Shahzad</h4></Footer>
+             <Footer styles = {{display:' '}} ><h4 style={{color:'rgb(0, 51, 102)'}}>Copyright @ Saim Shahzad</h4></Footer>
     </>
   }/>
 
 <Route path="/explore" element={
     <>
-    <Navbar setType={setType} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
+    <Navbar  setNext={setNext} setVerify={setVerify} setnext2={setnext2} setLoggedIn =  {setLoggedIn} setType={setType} firstname = {firstname} loggedIn = {loggedIn} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
    <MainSection/>
    <Row styles={{paddingTop:'50px',paddingBottom:'50px' }} >
               <Column>
@@ -190,13 +202,13 @@ const scrollToTop = () => {
    
               </Column>
              </Row>
-             <Footer  ><h4 style={{color:'rgb(0, 51, 102)'}}>Copyright @ Saim Shahzad</h4></Footer>
+             <Footer styles = {{display:' '}} ><h4 style={{color:'rgb(0, 51, 102)'}}>Copyright @ Saim Shahzad</h4></Footer>
     </>
   }/>
   
 <Route path="/about" element={
     <>
-    <Navbar setType={setType} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
+    <Navbar  setNext={setNext} setVerify={setVerify} setnext2={setnext2} setLoggedIn =  {setLoggedIn} setType={setType} firstname = {firstname} loggedIn = {loggedIn} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
    <About/>
    <Row styles={{paddingTop:'50px',paddingBottom:'50px' }} >
               <Column>
@@ -220,13 +232,13 @@ const scrollToTop = () => {
    
               </Column>
              </Row>
-             <Footer  ><h4 style={{color:'rgb(0, 51, 102)'}}>Copyright @ Saim Shahzad</h4></Footer>
+             <Footer styles = {{display:' '}} ><h4 style={{color:'rgb(0, 51, 102)'}}>Copyright @ Saim Shahzad</h4></Footer>
     </>
   }/>
   
 <Route path="/contactus" element={
     <>
-    <Navbar setType={setType} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
+    <Navbar  setNext={setNext} setVerify={setVerify} setnext2={setnext2} setLoggedIn =  {setLoggedIn} setType={setType} firstname = {firstname} loggedIn = {loggedIn} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
    <ContactUs/>
    <Row styles={{paddingTop:'50px',paddingBottom:'50px' }} >
               <Column>
@@ -250,15 +262,15 @@ const scrollToTop = () => {
    
               </Column>
              </Row>
-             <Footer  ><h4 style={{color:'rgb(0, 51, 102)'}}>Copyright @ Saim Shahzad</h4></Footer>
+             <Footer styles = {{display:' '}} ><h4 style={{color:'rgb(0, 51, 102)'}}>Copyright @ Saim Shahzad</h4></Footer>
     </>
   }/>
 
 
 <Route path="/signin" element={
     <>
-    <Navbar setType={setType} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
- <Next type={'Sign up'}/>
+    <Navbar  setNext={setNext} setVerify={setVerify} setnext2={setnext2} setLoggedIn =  {setLoggedIn} setType={setType} firstname = {firstname} loggedIn = {loggedIn} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
+ <Next next = {next} setNext={setNext} verify = {verify} setVerify={setVerify} next2 = {next2} setnext2={setnext2} firstname={firstname} setfirstname={setFirstname} setLoggedIn = {setLoggedIn} type={'Sign up'} forgotPass={forgotPass}/>
    <Row styles={{paddingTop:'50px',paddingBottom:'50px' }} >
               <Column>
               <img src={process.env.PUBLIC_URL + '/Assets/logo/logo.png'} alt="logo"/>
@@ -281,14 +293,14 @@ const scrollToTop = () => {
    
               </Column>
              </Row>
-             <Footer  ><h4 style={{color:'rgb(0, 51, 102)'}}>Copyright @ Saim Shahzad</h4></Footer>
+             <Footer styles = {{display:' '}} ><h4 style={{color:'rgb(0, 51, 102)'}}>Copyright @ Saim Shahzad</h4></Footer>
     </>
   }/>
   
 <Route path="/login" element={
     <>
-    <Navbar setType={setType} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
-   <LoginSignup type={'Login'}/>
+    <Navbar  setNext={setNext} setVerify={setVerify} setnext2={setnext2} setLoggedIn =  {setLoggedIn} setType={setType} firstname = {firstname} loggedIn = {loggedIn} scrollToSection={scrollToSection} scrollToTop={scrollToTop} reference={reference}/>
+   <LoginSignup setLoggedIn = {setLoggedIn} type={'Login'} setForgetPass = {setForgetPass} setfirstname = {setFirstname} firstname = {firstname}/>
    <Row styles={{paddingTop:'50px',paddingBottom:'50px' }} >
               <Column>
               <img src={process.env.PUBLIC_URL + '/Assets/logo/logo.png'} alt="logo"/>
@@ -311,7 +323,7 @@ const scrollToTop = () => {
    
               </Column>
              </Row>
-             <Footer  ><h4 style={{color:'rgb(0, 51, 102)'}}>Copyright @ Saim Shahzad</h4></Footer>
+             <Footer styles = {{display:' '}} ><h4 style={{color:'rgb(0, 51, 102)'}}>Copyright @ Saim Shahzad</h4></Footer>
     </>
   }/>
 </Routes></BrowserRouter>

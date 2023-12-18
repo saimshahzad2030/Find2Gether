@@ -83,8 +83,9 @@
     height: auto;
     object-fit: cover; /* Ensure the image covers the entire container */
     transition: opacity 0.5s ease-in-out;
-   border-radius: 50%;
-}
+   /* border-radius: 50%; */
+  border:5px  rgb(0, 51, 102) solid;
+   }
 @media only screen and (max-width:800px) and  (max-width:1000px){
     .firstChild{
         width: 30%;
